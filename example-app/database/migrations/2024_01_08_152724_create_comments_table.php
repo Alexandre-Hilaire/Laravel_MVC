@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->timestamps();
             $table->string('commentaires');
-            $table->foreign('post_id')->references('id')->on('posts');
+            $table->foreignId('post_id')->constrained();
         });
     }
 
