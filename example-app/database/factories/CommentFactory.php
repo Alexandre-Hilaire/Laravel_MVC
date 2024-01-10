@@ -17,6 +17,7 @@ class CommentFactory extends Factory
     public function definition(): array
     {
         return [
+            'id' => fake()->unique()->uuid(),
             'commentaires' => fake()->realText($maxNbChars = 300),
         ];
     }

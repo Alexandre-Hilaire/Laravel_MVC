@@ -12,10 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('comments', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->timestamps();
             $table->string('commentaires', 300);
-            $table->foreignId('post_id')->constrained();
+            $table->foreignUuid('post_id')->constrained();
         });
     }
 
