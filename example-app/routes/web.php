@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MeowController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/meows', [MeowController::class, "show"]);
+Route::get('/meow/{id}', [MeowController::class, "show_one"]);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
