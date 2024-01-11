@@ -13,6 +13,12 @@ class MeowController extends Controller
     public function create(){
         return view('createMeow');
     }
+    public function store(Request $request){
+        Post::create([
+            'user_id' => $request->user()->id,
+            'message' => $request->message,    
+        ]);
+    }
 
     public function index(){
         $meows = Post::all();
