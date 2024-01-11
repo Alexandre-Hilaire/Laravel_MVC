@@ -15,7 +15,8 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->timestamps();
             $table->string('commentaires', 300);
-            $table->foreignUuid('post_id')->constrained();
+            $table->foreignUuid('post_id')->constrained()
+            ->onDelete('cascade');
         });
     }
 

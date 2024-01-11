@@ -19,8 +19,15 @@ use App\Http\Controllers\MeowController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::get('/meows', [MeowController::class, "show"])->middleware('auth');
-Route::get('/meow/{id}', [MeowController::class, "show_one"])->middleware('auth');
+
+// * Routes des meows
+// Route::get('/meows', [MeowController::class, "index"])->middleware('auth');
+// Route::get('/meow/{id}', [MeowController::class, "showOne"])->middleware('auth');
+// Route::get('/createMeow',[MeowController::class, "create"])->middleware('auth');
+// Route::get('/updateMeow', [MeowController::class, "update"])->middleware('auth');
+// Route::get('/delete/{id}', [MeowController::class, "delete"])->middleware('auth');
+
+Route::resource('meows', MeowController::class);
 
 // * Fin des routes principales
 
