@@ -18,6 +18,7 @@ class MeowController extends Controller
             'user_id' => $request->user()->id,
             'message' => $request->message,    
         ]);
+        return redirect(route('meows.index'));
     }
 
     public function index(){
