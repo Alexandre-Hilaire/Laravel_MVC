@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use Illuminate\Support\Facades\Gate;
-
+use App\Rules\validateMeow;
 class MeowController extends Controller
 {
 // * Début du CRUD
@@ -14,10 +14,10 @@ class MeowController extends Controller
         return view('createMeow');
     }
     public function store(Request $request){
+        $request->validate([
+            'message'=>['required', 'string', new validateMeow],
+        ]);
         Post::create([
-            $request->validate([
-                'message'=>'required|max:300',
-            ]),
             'user_id' => $request->user()->id,
             'message' => $request->message,    
         ]);
@@ -37,7 +37,7 @@ class MeowController extends Controller
     public function update(Request $request, Post  $meow){
         if (Gate::allows('isAuthor', $meow)){
             $request->validate([
-                'message'=>'required|max:300',
+                'message'=>['required', 'string', new validateMeow],
             ]);
             $meow->update($request->all());
         }
