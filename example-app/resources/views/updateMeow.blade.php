@@ -6,5 +6,9 @@
 
 <label for="message"></label>
 <textarea name="message">{{ $meow->message }}</textarea>
+@error("message")
+<div>{{ $message }}</div>
+@enderror
 <button type="submit">Envoyer</button>
+
 </form>

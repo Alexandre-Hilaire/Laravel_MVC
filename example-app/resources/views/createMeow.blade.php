@@ -5,6 +5,9 @@
 @method('POST')
 
 <label for="message"></label>
-<input type="textarea" name="message" placeholder="Write your Meow...">
+<textarea type="textarea" name="message" placeholder="Write your Meow..."></textarea>
+@error("message")
+<div>{{ $message }}</div>
+@enderror
 <button type="submit">Envoyer</button>
 </form>
