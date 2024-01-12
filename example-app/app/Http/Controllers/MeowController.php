@@ -26,16 +26,17 @@ class MeowController extends Controller
             return view('meows', ['meows' => $meows]);
     }
     public function show(Post $meow){
-        // if (Gate::allows('read-post', $meow)){
         return view('meowDetails',['meow' => $meow]);
-        // }
-        // else {
-        //     return "vous n'êtes pas autorisé car vous n'êtes pas l'auteur";
-        // }
     }
-    public function update(Request $request, Post  $id){
-        if (Gate::allows('isAuthor', $id)){
-            return view('updateMeowView');
+    public function edit(Request $request, Post  $meow){
+        return view('updateMeow', ['meow' => $meow]);
+    }
+    public function update(Request $request, Post  $meow){
+        if (Gate::allows('isAuthor', $meow)){
+            $request->validate([
+                'message'=>'required',
+            ]);
+            $meow->update($request->all());
         }
         else {
             return "Vous n'êtes pas l'auteur, vous n'avez pas le droit de modifier ce meow";

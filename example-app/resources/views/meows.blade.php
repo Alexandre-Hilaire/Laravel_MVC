@@ -3,7 +3,7 @@
     <a href="{{ route('meows.create')}}">Post a Meow</a>
     @foreach($meows as $meow)
         <div>
-            <li>Autor : {{ $meow->users->name }}</li>
+            <li> Autor : {{ $meow->users->name }}</li>
             <li> Date : {{ $meow->created_at }}</li>
             <li> Meow : {{ $meow->message }}</li><br>
         </div>
