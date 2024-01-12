@@ -15,6 +15,9 @@ class MeowController extends Controller
     }
     public function store(Request $request){
         Post::create([
+            $request->validate([
+                'message'=>'required|max:300',
+            ]),
             'user_id' => $request->user()->id,
             'message' => $request->message,    
         ]);
@@ -34,7 +37,7 @@ class MeowController extends Controller
     public function update(Request $request, Post  $meow){
         if (Gate::allows('isAuthor', $meow)){
             $request->validate([
-                'message'=>'required',
+                'message'=>'required|max:300',
             ]);
             $meow->update($request->all());
         }
